@@ -1,12 +1,10 @@
 package com.nhnacademy.todo.advice;
 
-import com.nhnacademy.todo.exception.ErrorMessage;
-import com.nhnacademy.todo.exception.EventNotFoundException;
-import com.nhnacademy.todo.exception.InvalidEventOwnerException;
-import com.nhnacademy.todo.exception.UnauthorizedUserException;
+import com.nhnacademy.todo.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,7 +23,7 @@ public class CommonRestControllerAdvice {
 
 
     //400 Bad Request
-    @ExceptionHandler({MissingServletRequestParameterException.class})
+    @ExceptionHandler({MissingServletRequestParameterException.class, MethodArgumentNotValidException.class, ValidationFailedException.class})
     public ResponseEntity<ErrorMessage> missingParameter(Exception exception){
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), exception.getMessage());
         return new ResponseEntity<>(errorMessage,HttpStatus.BAD_REQUEST);

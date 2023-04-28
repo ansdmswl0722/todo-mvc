@@ -2,11 +2,14 @@ package com.nhnacademy.todo.controller;
 
 import com.nhnacademy.todo.dto.EventCreatedResponseDto;
 import com.nhnacademy.todo.dto.EventDto;
+import com.nhnacademy.todo.exception.ValidationFailedException;
 import com.nhnacademy.todo.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -21,13 +24,19 @@ public class EventController {
 
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping(value = {"/" ,""})
-    public EventCreatedResponseDto createEvent(@RequestBody EventDto eventDto ){
+    public EventCreatedResponseDto createEvent(@RequestBody @Valid EventDto eventDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            throw new ValidationFailedException(bindingResult);
+        }
         return eventService.insert(eventDto);
     }
 
     @ResponseStatus(value = HttpStatus.OK)
     @PutMapping("/{event-id}")
-    public long updateEvent(@PathVariable("event-id") long eventId, @RequestBody EventDto eventDto ){
+    public long updateEvent(@PathVariable("event-id") long eventId, @Valid @RequestBody EventDto eventDto, BindingResult bindingResult ){
+        if(bindingResult.hasErrors()){
+            throw new ValidationFailedException(bindingResult);
+        }
         return eventService.update(eventId,eventDto);
     }
 
