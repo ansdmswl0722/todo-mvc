@@ -1,6 +1,7 @@
 package com.nhnacademy.todo.advice;
 
 import com.nhnacademy.todo.exception.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Slf4j
 @RestControllerAdvice
 public class CommonRestControllerAdvice {
     @InitBinder
@@ -61,6 +63,7 @@ public class CommonRestControllerAdvice {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorMessage>  internalServerError(Exception exception){
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
+        log.debug("error:{}",exception);
         return new ResponseEntity<>(errorMessage,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
