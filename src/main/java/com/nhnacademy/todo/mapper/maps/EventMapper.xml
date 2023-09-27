@@ -15,4 +15,9 @@
         </selectKey>
 
     </insert>
+
+    <select id="getEventById" resultType="com.nhnacademy.todo.domain.Event">
+        SELECT *
+        FROM EVENT WHERE ID = ${id}
+    </select>
 </mapper>

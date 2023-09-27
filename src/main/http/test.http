@@ -5,11 +5,11 @@ X-USER-ID: marco
 
 {
   "subject" : "Spring framework 학습",
-  "eventAt": "2023-05-04"
+  "eventAt": "2023-09-26"
 }
 
 ###조회
-GET http://localhost:8081/api/calendar/events/6?format=xml
+GET http://localhost:8081/api/calendar/events/20?format=xml
 Accept: application/json
 X-USER-ID: marco
 

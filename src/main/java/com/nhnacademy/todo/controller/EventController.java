@@ -19,7 +19,6 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/api/calendar/events")
 public class EventController {
-
     private final EventService eventService;
 
     @ResponseStatus(value = HttpStatus.CREATED)

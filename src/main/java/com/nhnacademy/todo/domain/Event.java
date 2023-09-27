@@ -1,4 +1,6 @@
 package com.nhnacademy.todo.domain;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -10,15 +12,18 @@ public class Event {
     private long id;
 
     //userId
+    @JsonProperty("user_id")
     private String userId;
 
     //제목
     private String subject;
 
     //event 일자
+    @JsonProperty("event_at")
     private LocalDate eventAt;
 
     //event 등록 datetime
+    @JsonProperty("created_at")
     private LocalDateTime createdAt;
 
     public Event(String userId, String subject, LocalDate eventAt) {
