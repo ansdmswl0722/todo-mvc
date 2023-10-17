@@ -21,7 +21,7 @@
         FROM EVENT WHERE ID = #{id}
     </select>
 
-    <select id="getEvents" resultType="com.nhnacademy.todo.domain.Event">
-        select user_id,subject,event_at from event
+    <select id="findAllByMonth" resultType="com.nhnacademy.todo.domain.Event">
+        select id,user_id,subject,event_at from event where event_at like concat(#{day},'%')
     </select>
 </mapper>

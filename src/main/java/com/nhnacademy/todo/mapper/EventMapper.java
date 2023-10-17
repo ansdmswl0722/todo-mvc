@@ -12,7 +12,7 @@ public interface EventMapper {
 
     Event getEventById( long id);
 
-    List<Event> getEvents();
+    List<Event> findAllByMonth(String day);
 
 }
 

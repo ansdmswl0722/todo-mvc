@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -52,8 +53,14 @@ public class DbEventServiceImpl implements EventService {
 
     @Override
     public List<EventDto> getEventListByMonthly(Integer year, Integer month) {
+        String day = year + "-" + convertMonth(month);
+        List<Event> eventList =  eventMapper.findAllByMonth(day);
+        List<EventDto> eventDtos = new ArrayList<>();
+        for(Event event : eventList){
+            eventDtos.add(new EventDto(event.getId(),event.getSubject(),event.getEventAt()));
+        }
+        return eventDtos;
 
-        return null;
     }
 
     @Override
@@ -69,5 +76,12 @@ public class DbEventServiceImpl implements EventService {
     @Override
     public void deleteEventByDaily(LocalDate eventAt) {
 
+    }
+    public String convertMonth(int month){
+        if(month<10){
+            return "0"+month;
+        }else{
+            return month+"";
+        }
     }
 }

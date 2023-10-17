@@ -35,6 +35,13 @@ public class Event {
         this.createdAt = LocalDateTime.now();
     }
 
+    public Event(long id, String userId, String subject, LocalDate eventAt) {
+        this.id = id;
+        this.userId = userId;
+        this.subject = subject;
+        this.eventAt = eventAt;
+    }
+
     public void setId(long id) {
         this.id = id;
     }

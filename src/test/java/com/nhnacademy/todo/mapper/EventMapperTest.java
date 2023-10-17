@@ -41,9 +41,9 @@ class EventMapperTest {
     }
 
     @Test
-    @DisplayName("get event list")
+    @DisplayName("get event list month")
     void getEvents(){
-        List<Event> eventList = eventMapper.getEvents();
-        Assertions.assertThat(eventList.size()).isEqualTo(12);
+        List<Event> eventList = eventMapper.findAllByMonth("2023-05");
+        Assertions.assertThat(eventList.size()).isEqualTo(7);
     }
 }
