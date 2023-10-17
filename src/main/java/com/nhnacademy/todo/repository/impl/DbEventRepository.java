@@ -96,7 +96,7 @@ public class DbEventRepository implements EventRepository {
 
     @Override
     public Event getEvent(long eventId) {
-        Connection connection = null;
+        Connection connection;
         PreparedStatement psmt = null;
         ResultSet rs = null;
 
@@ -106,7 +106,7 @@ public class DbEventRepository implements EventRepository {
             throw new RuntimeException(e);
         }
 
-        String sql = "select subject,user_id,event_at,created_at,id from Event where id=?";
+        String sql = "select id,subject,user_id,event_at,created_at from Event where id=?";
         try {
             psmt = connection.prepareStatement(sql);
             psmt.setLong(1,eventId);

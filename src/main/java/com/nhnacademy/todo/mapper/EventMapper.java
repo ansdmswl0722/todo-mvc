@@ -4,11 +4,15 @@ import com.nhnacademy.todo.domain.Event;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface EventMapper {
     void save(Event event);
 
-    Event getEventById(@Param("id") long eventId);
+    Event getEventById( long id);
+
+    List<Event> getEvents();
 
 }
 

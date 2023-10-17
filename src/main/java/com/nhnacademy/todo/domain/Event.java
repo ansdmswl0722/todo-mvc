@@ -1,12 +1,14 @@
 package com.nhnacademy.todo.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
+@Data
 public class Event {
     //아이디
     private long id;

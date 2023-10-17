@@ -17,7 +17,11 @@
     </insert>
 
     <select id="getEventById" resultType="com.nhnacademy.todo.domain.Event">
-        SELECT *
-        FROM EVENT WHERE ID = ${id}
+        SELECT user_id,subject,event_at
+        FROM EVENT WHERE ID = #{id}
+    </select>
+
+    <select id="getEvents" resultType="com.nhnacademy.todo.domain.Event">
+        select user_id,subject,event_at from event
     </select>
 </mapper>

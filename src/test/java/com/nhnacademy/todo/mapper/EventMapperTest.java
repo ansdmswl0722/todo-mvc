@@ -14,6 +14,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @WebAppConfiguration
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = RootConfig.class)
@@ -29,5 +31,19 @@ class EventMapperTest {
         Event event = new Event("moon","mybatis", LocalDate.now());
         eventMapper.save(event);
         Assertions.assertThat(event.getId()).isNotZero();
+    }
+
+    @Test
+    @DisplayName("get event by id")
+    void getEvent(){
+        Event event =eventMapper.getEventById(20L);
+        Assertions.assertThat(event.getEventAt().equals("2023-09-20"));
+    }
+
+    @Test
+    @DisplayName("get event list")
+    void getEvents(){
+        List<Event> eventList = eventMapper.getEvents();
+        Assertions.assertThat(eventList.size()).isEqualTo(12);
     }
 }

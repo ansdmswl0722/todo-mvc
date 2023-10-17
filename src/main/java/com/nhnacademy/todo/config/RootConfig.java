@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 
+
 @Configuration
 @ComponentScan(basePackageClasses = {com.nhnacademy.todo.Base.class}, excludeFilters = {@ComponentScan.Filter(classes = {Controller.class})})
 public class RootConfig {

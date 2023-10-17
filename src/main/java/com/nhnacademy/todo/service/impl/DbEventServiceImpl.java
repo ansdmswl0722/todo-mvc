@@ -47,11 +47,12 @@ public class DbEventServiceImpl implements EventService {
             return null;
         }
         checkOwner(event.getUserId());
-        return new EventDto(event.getId(),event.getSubject(),event.getEventAt());
+        return new EventDto(eventId,event.getSubject(),event.getEventAt());
     }
 
     @Override
     public List<EventDto> getEventListByMonthly(Integer year, Integer month) {
+
         return null;
     }
 
