@@ -2,8 +2,8 @@ package com.nhnacademy.todo.mapper;
 
 import com.nhnacademy.todo.domain.Event;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Mapper
@@ -14,5 +14,6 @@ public interface EventMapper {
 
     List<Event> findAllByMonth(String day);
 
+    List<Event> findAllByDaily(LocalDate day);
 }
 

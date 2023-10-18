@@ -24,4 +24,8 @@
     <select id="findAllByMonth" resultType="com.nhnacademy.todo.domain.Event">
         select id,user_id,subject,event_at from event where event_at like concat(#{day},'%')
     </select>
+
+    <select id="findAllByDaily" resultType="com.nhnacademy.todo.domain.Event">
+        select id,user_id,subject,event_at from event where event_at = #{day}
+    </select>
 </mapper>

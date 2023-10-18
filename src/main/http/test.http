@@ -41,7 +41,7 @@ X-USER-ID: marco
 
 
 ###일별조회
-GET http://localhost:8081/api/calendar/events/?year=2023&month=02&day=15
+GET http://localhost:8081/api/calendar/events/?year=2023&month=05&day=04
 Accept: application/json
 X-USER-ID: marco
 

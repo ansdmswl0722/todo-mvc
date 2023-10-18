@@ -14,8 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Primary
 @Service
@@ -65,7 +67,13 @@ public class DbEventServiceImpl implements EventService {
 
     @Override
     public List<EventDto> getEventListBydaily(Integer year, Integer month, Integer day) {
-        return null;
+        LocalDate targetDate = LocalDate.of(year,month,day);
+        List<Event> eventList = eventMapper.findAllByDaily(targetDate);
+        List<EventDto> eventDtos = new ArrayList<>();
+        for(Event event : eventList){
+            eventDtos.add(new EventDto(event.getId(),event.getSubject(),event.getEventAt()));
+        }
+        return eventDtos;
     }
 
     @Override
