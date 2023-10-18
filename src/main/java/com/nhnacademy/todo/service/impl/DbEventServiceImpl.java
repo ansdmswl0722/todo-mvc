@@ -4,6 +4,7 @@ import com.nhnacademy.todo.domain.Event;
 import com.nhnacademy.todo.dto.DailyRegisterCountResponseDto;
 import com.nhnacademy.todo.dto.EventCreatedResponseDto;
 import com.nhnacademy.todo.dto.EventDto;
+import com.nhnacademy.todo.exception.EventNotFoundException;
 import com.nhnacademy.todo.mapper.EventMapper;
 import com.nhnacademy.todo.service.EventService;
 import com.nhnacademy.todo.share.UserIdStore;
@@ -34,20 +35,29 @@ public class DbEventServiceImpl implements EventService {
 
     @Override
     public long update(long eventId, EventDto eventDto) {
-
-        return 0;
+        Event event = eventMapper.getEventById(eventId);
+        if(Objects.isNull(event)){
+            throw new EventNotFoundException(eventId);
+        }
+        Event target = new Event(eventId, eventDto.getSubject());
+        eventMapper.update(target);
+        return eventId;
     }
 
     @Override
     public void deleteOne(long eventId) {
-
+        Event event = eventMapper.getEventById(eventId);
+        if(Objects.isNull(event)){
+            throw new EventNotFoundException(eventId);
+        }
+        eventMapper.deleteOne(eventId);
     }
 
     @Override
     public EventDto getEvent(long eventId) {
         Event event = eventMapper.getEventById(eventId);
         if(Objects.isNull(event)){
-            return null;
+            throw new EventNotFoundException(eventId);
         }
         checkOwner(event.getUserId());
         return new EventDto(eventId,event.getSubject(),event.getEventAt());
@@ -83,6 +93,7 @@ public class DbEventServiceImpl implements EventService {
 
     @Override
     public void deleteEventByDaily(LocalDate eventAt) {
+        eventMapper.deleteByDaily(eventAt);
 
     }
     public String convertMonth(int month){

@@ -42,6 +42,11 @@ public class Event {
         this.eventAt = eventAt;
     }
 
+    public Event(long id,String subject) {
+        this.id = id;
+        this.subject = subject;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
