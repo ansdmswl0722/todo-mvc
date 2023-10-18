@@ -3,6 +3,7 @@ package com.nhnacademy.todo.mapper;
 import com.nhnacademy.todo.domain.Event;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.time.LocalDate;
@@ -26,6 +27,9 @@ public interface EventMapper {
 
     @Delete("Delete from event where event_at = #{day}")
     void deleteByDaily(LocalDate day);
+
+    @Select("select  count(*) from event where event_at = #{day}")
+    int countByEventAt(LocalDate day);
 
 }
 

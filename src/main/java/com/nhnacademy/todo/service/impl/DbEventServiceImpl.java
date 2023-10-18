@@ -15,10 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Primary
 @Service
@@ -88,7 +86,8 @@ public class DbEventServiceImpl implements EventService {
 
     @Override
     public DailyRegisterCountResponseDto getDayliyRegisterCount(LocalDate targetDate) {
-        return null;
+        long count =  eventMapper.countByEventAt(targetDate);
+        return new DailyRegisterCountResponseDto(count);
     }
 
     @Override

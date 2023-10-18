@@ -36,7 +36,7 @@ X-USER-ID: marco
 
 
 ###일일등록 카운트
-GET http://localhost:8081/api/calendar/daily-register-count?date=2023-02-15
+GET http://localhost:8081/api/calendar/daily-register-count?date=2023-10-26
 Accept: application/json
 X-USER-ID: marco
 
